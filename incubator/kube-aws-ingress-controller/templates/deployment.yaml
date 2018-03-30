@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "kube-aws-ingress-controller.name" . }}
+  namespace: kube-system
+  labels:
+    application: {{ template "kube-aws-ingress-controller.name" . }}
+    component: ingress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: {{ template "kube-aws-ingress-controller.name" . }}
+      component: ingress
+  template:
+    metadata:
+      labels:
+        application: {{ template "kube-aws-ingress-controller.name" . }}
+        component: ingress
+    spec:
+      {{- if .Values.rbac.create }}
+      serviceAccountName: {{ .Values.rbac.serviceAccountName }}
+      {{- end }}
+      containers:
+      - name: {{ template "kube-aws-ingress-controller.name" . }}
+        image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
+        imagePullPolicy: "{{ .Values.controller.image.pullPolicy }}"
+        env:
+        - name: AWS_REGION
+          value: {{ .Values.controller.awsRegion }}
