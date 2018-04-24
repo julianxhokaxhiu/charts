@@ -5,7 +5,10 @@ metadata:
   name: {{ template "kube-aws-ingress-controller.name" . }}
   namespace: kube-system
   labels:
-    application: {{ template "kube-aws-ingress-controller.name" . }}
+    app: {{ template "kube-aws-ingress-controller.name" . }}
+    chart: {{ template "kube-aws-ingress-controller.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
     component: ingress
 spec:
   replicas: 1
@@ -19,9 +22,7 @@ spec:
         application: {{ template "kube-aws-ingress-controller.name" . }}
         component: ingress
     spec:
-      {{- if .Values.rbac.create }}
-      serviceAccountName: {{ .Values.rbac.serviceAccountName }}
-      {{- end }}
+      serviceAccountName: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
       containers:
       - name: {{ template "kube-aws-ingress-controller.name" . }}
         image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"

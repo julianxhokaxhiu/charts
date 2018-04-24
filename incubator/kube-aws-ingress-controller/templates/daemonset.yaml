@@ -1,10 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: extensions/vbeta2
 kind: DaemonSet
 metadata:
-  name: {{ template "kube-aws-ingress-controller.name" . }}-skipper-ingress
+  name: {{ template "kube-aws-ingress-controller.fullname" . }}
   namespace: kube-system
   labels:
-    component: ingress
+    app: {{ template "kube-aws-ingress-controller.name" . }}
+    chart: {{ template "kube-aws-ingress-controller.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
@@ -13,13 +16,11 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      name: {{ template "kube-aws-ingress-controller.name" . }}-skipper-ingress
+      name: {{ template "kube-aws-ingress-controller.fullname" . }}
       labels:
         component: ingress
     spec:
-      {{- if .Values.rbac.create }}
-      serviceAccountName: {{ .Values.rbac.serviceAccountName }}
-      {{- end }}
+      serviceAccountName: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
       hostNetwork: true
       containers:
       - name: {{ template "kube-aws-ingress-controller.name" . }}

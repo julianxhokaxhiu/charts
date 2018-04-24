@@ -4,7 +4,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app: {{ template "kube-aws-ingress-controller.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    chart: {{ template "kube-aws-ingress-controller.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
   name: {{ template "kube-aws-ingress-controller.fullname" . }}
