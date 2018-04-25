@@ -42,12 +42,7 @@ spec:
           - "-metrics-exp-decay-sample"
           - "-kubernetes-https-redirect=true"
         resources:
-          limits:
-            cpu: {{ .Values.daemonset.resources.limits.cpu }}
-            memory: {{ .Values.daemonset.resources.limits.memory }}
-          requests:
-            cpu: {{ .Values.daemonset.resources.requests.cpu }}
-            memory: {{ .Values.daemonset.resources.requests.memory }}
+{{ toYaml .Values.daemonset.resources | indent 12 }}
         readinessProbe:
           httpGet:
             path: /kube-system/healthz

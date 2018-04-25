@@ -14,13 +14,13 @@ daemonset:
     tag: "v0.9.202"
     pullPolicy: IfNotPresent
   # Resource configuration for limits and requests
-  resources:
-    limits:
-      cpu: 200m
-      memory: 200Mi
-    requests:
-      cpu: 25m
-      memory: 25Mi
+  resources: {}
+    # limits:
+    #   cpu: 200m
+    #   memory: 200Mi
+    # requests:
+    #   cpu: 25m
+    #   memory: 25Mi
 
 ## RBAC support
 rbac:
