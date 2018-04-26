@@ -1,4 +1,4 @@
-apiVersion: extensions/vbeta2
+apiVersion: extensions/v1beta2
 kind: DaemonSet
 metadata:
   name: {{ template "kube-aws-ingress-controller.fullname" . }}
