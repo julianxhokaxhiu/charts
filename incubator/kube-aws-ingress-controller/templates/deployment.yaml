@@ -1,5 +1,4 @@
----
-apiVersion: apps/v1beta1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "kube-aws-ingress-controller.name" . }}
@@ -14,12 +13,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      application: {{ template "kube-aws-ingress-controller.name" . }}
+      app: {{ template "kube-aws-ingress-controller.name" . }}
+      release: {{ .Release.Name }}
       component: ingress
   template:
     metadata:
       labels:
-        application: {{ template "kube-aws-ingress-controller.name" . }}
+        app: {{ template "kube-aws-ingress-controller.name" . }}
+        release: {{ .Release.Name }}
         component: ingress
     spec:
       serviceAccountName: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}

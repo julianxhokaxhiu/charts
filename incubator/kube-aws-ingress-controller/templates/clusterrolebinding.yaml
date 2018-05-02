@@ -14,6 +14,6 @@ roleRef:
   name: {{ template "kube-aws-ingress-controller.fullname" . }}
 subjects:
   - kind: ServiceAccount
-    name: {{ .Values.rbac.serviceAccountName }}
+    name: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
 {{- end }}

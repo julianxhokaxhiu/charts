@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta2
+apiVersion: apps/v1beta2
 kind: DaemonSet
 metadata:
   name: {{ template "kube-aws-ingress-controller.fullname" . }}
@@ -11,6 +11,8 @@ metadata:
 spec:
   selector:
     matchLabels:
+      app: {{ template "kube-aws-ingress-controller.name" . }}
+      release: {{ .Release.Name }}
       component: ingress
   updateStrategy:
     type: RollingUpdate
@@ -18,6 +20,8 @@ spec:
     metadata:
       name: {{ template "kube-aws-ingress-controller.fullname" . }}
       labels:
+        app: {{ template "kube-aws-ingress-controller.name" . }}
+        release: {{ .Release.Name }}
         component: ingress
     spec:
       serviceAccountName: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
