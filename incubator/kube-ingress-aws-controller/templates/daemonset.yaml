@@ -45,6 +45,9 @@ spec:
           - "-experimental-upgrade"
           - "-metrics-exp-decay-sample"
           - "-kubernetes-https-redirect=true"
+          - "-lb-healthcheck-interval=3s"
+          - "-metrics-flavour=codahale,prometheus"
+          - "-enable-connection-metrics"
         resources:
 {{ toYaml .Values.daemonset.resources | indent 12 }}
         readinessProbe:
