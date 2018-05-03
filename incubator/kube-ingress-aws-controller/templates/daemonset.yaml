@@ -2,7 +2,6 @@ apiVersion: apps/v1beta2
 kind: DaemonSet
 metadata:
   name: {{ template "kube-ingress-aws-controller.fullname" . }}
-  namespace: kube-system
   labels:
     app: {{ template "kube-ingress-aws-controller.name" . }}
     chart: {{ template "kube-ingress-aws-controller.chart" . }}
