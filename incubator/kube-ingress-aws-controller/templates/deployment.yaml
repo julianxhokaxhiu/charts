@@ -1,11 +1,11 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "kube-aws-ingress-controller.name" . }}
+  name: {{ template "kube-ingress-aws-controller.name" . }}
   namespace: kube-system
   labels:
-    app: {{ template "kube-aws-ingress-controller.name" . }}
-    chart: {{ template "kube-aws-ingress-controller.chart" . }}
+    app: {{ template "kube-ingress-aws-controller.name" . }}
+    chart: {{ template "kube-ingress-aws-controller.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     component: ingress
@@ -13,19 +13,19 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "kube-aws-ingress-controller.name" . }}
+      app: {{ template "kube-ingress-aws-controller.name" . }}
       release: {{ .Release.Name }}
       component: ingress
   template:
     metadata:
       labels:
-        app: {{ template "kube-aws-ingress-controller.name" . }}
+        app: {{ template "kube-ingress-aws-controller.name" . }}
         release: {{ .Release.Name }}
         component: ingress
     spec:
-      serviceAccountName: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
+      serviceAccountName: {{ template "kube-ingress-aws-controller.serviceAccountName" . }}
       containers:
-      - name: {{ template "kube-aws-ingress-controller.name" . }}
+      - name: {{ template "kube-ingress-aws-controller.name" . }}
         image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
         imagePullPolicy: "{{ .Values.controller.image.pullPolicy }}"
         env:

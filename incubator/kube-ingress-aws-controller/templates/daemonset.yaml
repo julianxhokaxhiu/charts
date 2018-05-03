@@ -1,33 +1,33 @@
 apiVersion: apps/v1beta2
 kind: DaemonSet
 metadata:
-  name: {{ template "kube-aws-ingress-controller.fullname" . }}
+  name: {{ template "kube-ingress-aws-controller.fullname" . }}
   namespace: kube-system
   labels:
-    app: {{ template "kube-aws-ingress-controller.name" . }}
-    chart: {{ template "kube-aws-ingress-controller.chart" . }}
+    app: {{ template "kube-ingress-aws-controller.name" . }}
+    chart: {{ template "kube-ingress-aws-controller.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "kube-aws-ingress-controller.name" . }}
+      app: {{ template "kube-ingress-aws-controller.name" . }}
       release: {{ .Release.Name }}
       component: ingress
   updateStrategy:
     type: RollingUpdate
   template:
     metadata:
-      name: {{ template "kube-aws-ingress-controller.fullname" . }}
+      name: {{ template "kube-ingress-aws-controller.fullname" . }}
       labels:
-        app: {{ template "kube-aws-ingress-controller.name" . }}
+        app: {{ template "kube-ingress-aws-controller.name" . }}
         release: {{ .Release.Name }}
         component: ingress
     spec:
-      serviceAccountName: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
+      serviceAccountName: {{ template "kube-ingress-aws-controller.serviceAccountName" . }}
       hostNetwork: true
       containers:
-      - name: {{ template "kube-aws-ingress-controller.name" . }}
+      - name: {{ template "kube-ingress-aws-controller.name" . }}
         image: "{{ .Values.daemonset.image.repository }}:{{ .Values.daemonset.image.tag }}"
         imagePullPolicy: "{{ .Values.daemonset.image.pullPolicy }}"
         ports:

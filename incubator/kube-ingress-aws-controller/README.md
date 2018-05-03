@@ -1,12 +1,12 @@
-# kube-aws-ingress-controller
+# kube-ingress-aws-controller
 
-[kube-aws-ingress-controller](https://github.com/zalando-incubator/kube-ingress-aws-controller) is an ingress controller for Kubernetes — the open-source container deployment, scaling, and management system — on AWS.
+[kube-ingress-aws-controller](https://github.com/zalando-incubator/kube-ingress-aws-controller) is an ingress controller for Kubernetes — the open-source container deployment, scaling, and management system — on AWS.
 
 ## TL;DR;
 
 ```console
 $ helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-$ helm install incubator/kube-aws-ingress-controller --namespace kube-system --name aws-ingc
+$ helm install incubator/kube-ingress-aws-controller --namespace kube-system --name aws-ingc
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install incubator/kube-aws-ingress-controller --namespace kube-system --n
 To install the chart with the release name `aws-ingc`:
 
 ```console
-$ helm install incubator/kube-aws-ingress-controller --namespace kube-system --name aws-ingc
+$ helm install incubator/kube-ingress-aws-controller --namespace kube-system --name aws-ingc
 ```
 
 ## Uninstalling the Chart
@@ -27,7 +27,7 @@ $ helm delete --purge aws-ingc
 
 ## Configuration
 
-The following table lists the configurable parameters of the kube-aws-ingress-controller chart and their default values.
+The following table lists the configurable parameters of the kube-ingress-aws-controller chart and their default values.
 
 Parameter | Description | Default
 --- | --- | ---
@@ -43,12 +43,12 @@ Parameter | Description | Default
 `daemonset.resources.requests.cpu` | Daemonset CPU request limit for resources | `25m`
 `daemonset.resources.requests.memory` | Daemonset Memory request limit for resources | `25Mi`
 `rbac.create` | Set to `true` to enable RBAC support. | `false`
-`rbac.serviceAccountName` | Default Service Account name for RBAC ( used only when `rbac.create` is set to `true` ) | `kube-aws-ingress-controller`
+`rbac.serviceAccountName` | Default Service Account name for RBAC ( used only when `rbac.create` is set to `true` ) | `kube-ingress-aws-controller`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
 
 ```bash
-$ helm install --name aws-ingc -f values.yaml incubator/kube-aws-ingress-controller
+$ helm install --name aws-ingc -f values.yaml incubator/kube-ingress-aws-controller
 ```

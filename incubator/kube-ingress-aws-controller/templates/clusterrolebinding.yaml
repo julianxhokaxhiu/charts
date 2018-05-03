@@ -3,17 +3,17 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   labels:
-    app: {{ template "kube-aws-ingress-controller.name" . }}
-    chart: {{ template "kube-aws-ingress-controller.chart" . }}
+    app: {{ template "kube-ingress-aws-controller.name" . }}
+    chart: {{ template "kube-ingress-aws-controller.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-  name: {{ template "kube-aws-ingress-controller.fullname" . }}
+  name: {{ template "kube-ingress-aws-controller.fullname" . }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ template "kube-aws-ingress-controller.fullname" . }}
+  name: {{ template "kube-ingress-aws-controller.fullname" . }}
 subjects:
   - kind: ServiceAccount
-    name: {{ template "kube-aws-ingress-controller.serviceAccountName" . }}
+    name: {{ template "kube-ingress-aws-controller.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
 {{- end }}
