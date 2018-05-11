@@ -43,7 +43,7 @@ Parameter | Description | Default
 `daemonset.resources.requests.cpu` | Daemonset CPU request limit for resources | `25m`
 `daemonset.resources.requests.memory` | Daemonset Memory request limit for resources | `25Mi`
 `rbac.create` | Set to `true` to enable RBAC support. | `false`
-`rbac.serviceAccount.name` | Default Service Account name for RBAC ( used only when `rbac.serviceAccount.create` is set to `true` ) | `kube-ingress-aws-controller`
+`serviceAccount.name` | Default Service Account name for RBAC ( used only when `serviceAccount.create` is set to `true` ) | `kube-ingress-aws-controller`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
