@@ -31,13 +31,13 @@ spec:
         imagePullPolicy: "{{ .Values.daemonset.image.pullPolicy }}"
         ports:
         - name: ingress-port
-          containerPort: 9999
-          hostPort: 9999
+          containerPort: {{ .Values.daemonset.port }}
+          hostPort: {{ .Values.daemonset.port }}
         args:
           - "skipper"
           - "-kubernetes"
           - "-kubernetes-in-cluster"
-          - "-address=:9999"
+          - "-address=:{{ .Values.daemonset.port }}"
           - "-proxy-preserve-host"
           - "-serve-host-metrics"
           - "-enable-ratelimits"
